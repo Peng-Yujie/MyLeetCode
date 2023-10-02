@@ -5,46 +5,33 @@ public:
         vector<vector<int>> ans;
         int left = cStart, right = cStart, top = rStart, bottom = rStart;
         while (count < rows*cols){
-            
             for(int i = left; i <= right; i++){
-                if (i>=0 && i < cols && top >=0 && top < rows){
-                    vector<int> item;
-                    item.push_back(top);
-                    item.push_back(i);
-                    ans.push_back(item);
+                if (i >= 0 && i < cols && top >=0){
+                    ans.push_back({top,i});
                     count++;
                 }
             }
-right++;
+            right++;
             
             for(int i = top; i<= bottom; i++){
-                if (i>=0 && i < rows && right >= 0 && right < cols){
-                    vector<int> item;
-                    item.push_back(i);
-                    item.push_back(right);
-                    ans.push_back(item);
+                if (i >= 0 && i < rows && right < cols){
+                    ans.push_back({i,right});
                     count++;
                 }
             }
-bottom++;
+            bottom++;
             
             for(int i = right; i>=left; i--){
-                if(i>=0 && i<cols && bottom >= 0 && bottom < rows){
-                    vector<int> item;
-                    item.push_back(bottom);
-                    item.push_back(i);
-                    ans.push_back(item);
+                if(i >= 0 && i < cols && bottom < rows){
+                    ans.push_back({bottom,i});
                     count++;
                 }
             }
-left--;
+            left--;
             
             for(int i = bottom; i>=top; i--){
-                if(i>=0 && i<rows && left >=0 && left < cols){
-                    vector<int> item;
-                    item.push_back(i);
-                    item.push_back(left);
-                    ans.push_back(item);
+                if(i >= 0 && i < rows && left >= 0){
+                    ans.push_back({i,left});
                     count++;
                 }
             }
