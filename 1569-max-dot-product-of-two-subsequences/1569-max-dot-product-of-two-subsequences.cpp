@@ -22,15 +22,21 @@ public:
             return max(max1 * min2, max2 * min1);
         }
 
-        for(int i = M - 1; i >= 0; i--){
-            for(int j = N - 1; j >= 0; j--){
-                int dotProduct = nums1[i] * nums2[j] + dp[i+1][j+1];
-                dp[i][j] = max({dotProduct, dp[i+1][j], dp[i][j+1]});
+        // for(int i = M - 1; i >= 0; i--){
+        //     for(int j = N - 1; j >= 0; j--){
+        //         int dotProduct = nums1[i] * nums2[j] + dp[i+1][j+1];
+        //         dp[i][j] = max({dotProduct, dp[i+1][j], dp[i][j+1]});
+        //     }
+        // }
+        // int res = dp[0][0];
+        // return res;
+
+        for(int i = 1; i < M+1; i++){
+            for(int j = 1; j < N+1; j++){
+                int dotProduct = nums1[i-1] * nums2[j-1] + dp[i-1][j-1];
+                dp[i][j] = max({dotProduct, dp[i-1][j], dp[i][j-1]});
             }
         }
-        
-        int res = dp[0][0];
-        return res;
-
+        return dp[M][N];
     }
 };
