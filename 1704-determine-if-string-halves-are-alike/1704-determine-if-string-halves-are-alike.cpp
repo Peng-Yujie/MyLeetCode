@@ -1,11 +1,12 @@
 class Solution {
 public:
     bool halvesAreAlike(string s) {
-        string vowels = "aeiouAEIOU";
+        unordered_set<char> vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
         int l = 0, r = 0;
-        for(int i = 0; i < s.length()/2; i++){
-            if (vowels.find(s[i])!= string::npos) l++;
-            if (vowels.find(s[s.length()/2+i])!= string::npos) r++;
+        int mid = s.length()/2;
+        for(int i = 0; i < mid; i++){
+            if (vowels.count(s[i])) l++;
+            if (vowels.count(s[i+mid])) r++;
         }
         return l == r;
     }
