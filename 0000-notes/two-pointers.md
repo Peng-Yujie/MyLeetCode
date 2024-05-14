@@ -5,6 +5,8 @@
 
 ## Same Direction
 
+> fast and slow pointers
+
 0 --> i --> j --> n
 
 [0,i): elements that have been processed
@@ -15,11 +17,21 @@
 
 ## Opposite Direction
 
+> left and right pointers
+
 0 --> i --> <-- j <-- n
 
 [0,i) and (j,n]: elements that have been processed
 
 [i,j]: elements that are not processed
+
+### Binary Search
+
+### Two Sum
+
+### Palindrome
+
+Start from the middle and expand to both sides.
 
 ## Examples
 

@@ -69,4 +69,5 @@ class Graph {
 
 ### BFS
 
-Starts from the root node and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
+Starts from the root node and explores all the neighbor nodes at the present depth prior to moving on to the nodes at
+the next depth level.
