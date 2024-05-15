@@ -15,12 +15,10 @@ class Solution:
             else:
                 p2.next = p
                 p2 = p2.next
-            
-            temp = p.next
-            p.next = None
-            p = temp
+            p = p.next
         
         p1.next = dummy2.next
+        p2.next = None
 
         return dummy1.next
 
