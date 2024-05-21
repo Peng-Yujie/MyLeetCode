@@ -5,20 +5,10 @@ from collections import deque
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
         def plusOne(s, idx):
-            chs = list(s)
-            if chs[idx] == '9':
-                chs[idx] = '0'
-            else:
-                chs[idx] = str(int(chs[idx]) + 1)
-            return ''.join(chs)
+            return s[:idx] + str((int(s[idx]) + 1) % 10) + s[idx + 1:]
         
         def minusOne(s, idx):
-            chs = list(s)
-            if chs[idx] == '0':
-                chs[idx] = '9'
-            else:
-                chs[idx] = str(int(chs[idx]) - 1)
-            return ''.join(chs)
+            return s[:idx] + str((int(s[idx]) - 1) % 10) + s[idx + 1:]
         
         q = deque()
         visited = set()
@@ -39,11 +29,11 @@ class Solution:
                 
                 for j in range(4):
                     up = plusOne(cur, j)
-                    if not up in visited:
+                    if up not in visited:
                         q.append(up)
                         visited.add(up)
                     down = minusOne(cur, j)
-                    if not down in visited:
+                    if down not in visited:
                         q.append(down)
                         visited.add(down)
                     
