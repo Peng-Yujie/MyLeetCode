@@ -11,3 +11,4 @@
 ## Bidirectional BFS
 
 - start from the starting node and the target node, and meet in the middle
+- [LeetCode 752. Open the Lock](../0752-open-the-lock/0752-open-the-lock.py)
