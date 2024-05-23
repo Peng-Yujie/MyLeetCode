@@ -35,6 +35,8 @@ To traverse a bipartite graph, we need to assign colors to nodes.
   - Same color: not bipartite.
   - Different color: continue traversal.
 
+### DFS
+
 ```python
 class Solution:
   def isBipartite(self, graph: List[List[int]]) -> bool:
@@ -47,4 +49,32 @@ class Solution:
 
     return all(dfs(node, 0) for node in range(len(graph)) if node not in visited)
 
+```
+
+### BFS
+
+```python
+from collections import deque
+
+class Solution:
+  def isBipartite(self, graph: List[List[int]]) -> bool:
+    visited = {}
+    for node in range(len(graph)):
+      # Skip visited nodes
+      if node in visited:
+        continue
+      # Store the current node and its color(0 by default)
+      queue = deque([(node, 0)])
+      # BFS to traverse all neighbors
+      while queue:
+        node, color = queue.popleft()
+        if node in visited:
+          if visited[node] != color:
+            return False
+          continue
+        visited[node] = color
+        for neighbor in graph[node]:
+          queue.append((neighbor, 1 - color))
+
+    return True
 ```
