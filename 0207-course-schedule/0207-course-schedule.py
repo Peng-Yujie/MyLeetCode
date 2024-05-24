@@ -1,26 +1,20 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = [[] for i in range(numCourses)]
-        for course, prerequisite in prerequisites:
-            graph[prerequisite].append(course)
+        for a, b in prerequisites:
+            graph[a].append(b)
         
-        visited = [False] * numCourses
-        onPath = [False] * numCourses
-        res = False
-
-        def traverse(graph, s):
-            nonlocal res
-            if onPath[s]:
-                res = True
-            if visited[s] or res:
-                return
-            visited[s] = True
-            onPath[s] = True
-            for t in graph[s]:
-                traverse(graph, t)
-            onPath[s] = False
+        visited = [0] * numCourses
         
-        for i in range(numCourses):
-            traverse(graph, i)
+        def DFS(a):
+            if visited[a] == 1:
+                return False
+            if visited[a] == 2:
+                return True
+            visited[a] = 1
+            if not all(DFS(b) for b in graph[a]):
+                return False
+            visited[a] = 2
+            return True
         
-        return not res
+        return all(DFS(a) for a in range(numCourses))
