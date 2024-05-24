@@ -12,9 +12,14 @@ class Solution:
             if visited[a] == 2:
                 return True
             visited[a] = 1
-            if not all(DFS(b) for b in graph[a]):
-                return False
+            for b in graph[a]:
+                if not DFS(b):
+                    return False
             visited[a] = 2
             return True
         
-        return all(DFS(a) for a in range(numCourses))
+        for a in range(numCourses):
+            if not DFS(a):
+                return False
+        
+        return True
