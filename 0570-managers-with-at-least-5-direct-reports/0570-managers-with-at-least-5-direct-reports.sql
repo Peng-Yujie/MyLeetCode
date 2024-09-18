@@ -1,7 +1,7 @@
 /* Write your T-SQL query statement below */
-select name from Employee
-where id in (
-    select managerId from Employee
-    group by managerId
-    having count(managerID)>4
-)
+select a.name
+from Employee a 
+join Employee b 
+on a.id=b.managerId
+group by a.name
+having count(*)>=5
